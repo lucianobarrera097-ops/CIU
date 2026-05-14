@@ -4,24 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CIU - Turnos | UNSTA</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #003087;
             --success: #10b981;
         }
-       
+      
         * { margin: 0; padding: 0; box-sizing: border-box; }
-       
+      
         body {
             font-family: 'Inter', sans-serif;
             background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
             min-height: 100vh;
             padding: 20px;
-            overflow-x: hidden;
         }
-       
+      
         .container {
             max-width: 560px;
             margin: 0 auto;
@@ -30,25 +28,21 @@
             box-shadow: 0 20px 60px rgba(0, 48, 135, 0.15);
             overflow: hidden;
         }
-       
+      
         header {
             background: linear-gradient(135deg, var(--primary), #0052cc);
             color: white;
             padding: 30px 20px 35px;
             text-align: center;
             position: relative;
-            overflow: hidden;
         }
-       
+      
         .logo {
             width: 145px;
             height: auto;
             margin-bottom: 12px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
         }
-       
+      
         .admin-btn {
             position: absolute;
             top: 20px;
@@ -61,26 +55,73 @@
             border-radius: 50%;
             font-size: 1.6rem;
             cursor: pointer;
+            transition: all 0.3s;
         }
-       
-        .screen { 
-            padding: 40px 30px; 
-            opacity: 0; 
-            transform: translateY(30px); 
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); 
-            display: none; 
+        .admin-btn:hover { transform: rotate(30deg); }
+
+        .screen {
+            padding: 40px 30px;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            display: none;
         }
-        .screen.active { 
-            display: block !important; 
-            opacity: 1; 
-            transform: translateY(0); 
+        .screen.active {
+            display: block !important;
+            opacity: 1;
+            transform: translateY(0);
         }
-       
-        h2 { text-align: center; margin-bottom: 30px; color: #1e2937; font-weight: 600; font-size: 1.5rem; }
-        input { width: 100%; padding: 16px; margin: 10px 0; border: 2px solid #e2e8f0; border-radius: 14px; font-size: 1.1rem; }
-        .btn-primary { background: var(--primary); color: white; padding: 16px; border-radius: 14px; font-size: 1.1rem; width: 100%; margin-top: 10px; font-weight: 600; }
-        .btn-secondary { background: #6b7280; color: white; padding: 16px; border-radius: 14px; width: 100%; margin-top: 10px; }
-        .motivos { display: grid; gap: 14px; margin: 25px 0; }
+
+        h2 { 
+            text-align: center; 
+            margin-bottom: 25px; 
+            color: #1e2937; 
+            font-weight: 600; 
+            font-size: 1.55rem; 
+        }
+
+        input { 
+            width: 100%; 
+            padding: 16px; 
+            margin: 10px 0; 
+            border: 2px solid #e2e8f0; 
+            border-radius: 14px; 
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(0, 48, 135, 0.1);
+        }
+
+        .btn-primary { 
+            background: var(--primary); 
+            color: white; 
+            padding: 16px; 
+            border-radius: 14px; 
+            font-size: 1.1rem; 
+            width: 100%; 
+            margin-top: 15px; 
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,48,135,0.3); }
+
+        .btn-secondary { 
+            background: #6b7280; 
+            color: white; 
+            padding: 16px; 
+            border-radius: 14px; 
+            width: 100%; 
+            margin-top: 10px; 
+        }
+
+        .motivos { 
+            display: grid; 
+            gap: 14px; 
+            margin: 25px 0; 
+        }
         .motivo-btn {
             padding: 24px;
             border: 2px solid #e2e8f0;
@@ -89,18 +130,54 @@
             font-weight: 600;
             background: white;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .motivo-btn:hover, .motivo-btn.active {
             border-color: var(--primary);
             background: #f0f4ff;
+            transform: translateY(-4px);
+        }
+
+        /* ====================== SUCCESS SCREEN ====================== */
+        #screenSuccess {
+            text-align: center;
+            padding: 50px 30px;
+        }
+
+        .success-icon {
+            font-size: 6.5rem;
+            margin: 0 auto 20px;
+            display: block;
+            animation: pop 0.7s ease;
+        }
+
+        #numeroTurno {
+            font-size: 3.6rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 15px 0 25px;
+            animation: fadeInScale 0.8s ease;
+        }
+
+        @keyframes pop {
+            0% { transform: scale(0.2) rotate(-15deg); }
+            60% { transform: scale(1.15) rotate(10deg); }
+            100% { transform: scale(1) rotate(0); }
+        }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.6); }
+            to { opacity: 1; transform: scale(1); }
         }
     </style>
 </head>
 <body>
 <div class="container">
     <header>
-        <img src="logo-unsta.png" alt="Logo UNSTA" class="logo">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJa7s1baFLXkFvc_SvC2hRqMhy4wA4k4ciiQ&s" 
+     alt="Logo UNSTA" 
+     class="logo"
+     onerror="this.src='https://via.placeholder.com/145x80/003087/ffffff?text=UNSTA'">
         <h1 style="font-size: 2.3rem; margin-bottom: 8px;">CIU</h1>
         <p style="opacity: 0.95;">Universidad del Norte Santo Tomás de Aquino</p>
         <button class="admin-btn" onclick="mostrarLoginAdmin()" title="Administrador">⚙️</button>
@@ -124,26 +201,34 @@
 
     <!-- ÉXITO -->
     <div id="screenSuccess" class="screen">
-        <div class="success-icon" style="font-size:5rem; margin-bottom:15px;">✅</div>
-        <h2 style="color: var(--success);">Turno Registrado</h2>
-        <p style="color: #64748b; margin-bottom:10px;">Tu número de turno es:</p>
-        <p id="numeroTurno" style="font-size: 3.2rem; font-weight: 700; color: var(--primary); margin:15px 0;"></p>
+        <div class="success-icon">✅</div>
+        <h2 style="color: var(--success);">¡Turno Registrado!</h2>
+        <p style="color: #64748b; margin-bottom: 8px;">Tu número de turno es:</p>
+        <p id="numeroTurno"></p>
         <button type="button" onclick="reiniciarFormulario()" class="btn-primary">Nuevo Registro</button>
     </div>
 </div>
 
+<canvas id="confetti" style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:9999; display:none;"></canvas>
 <div id="toast"></div>
 
 <script>
+    // ... (El resto del script se mantiene igual que en la versión anterior)
+
     let datosUsuario = {};
     const motivosLista = ["Inscripciones", "Cursos", "Alumnos", "Becas", "Otros trámites"];
     let contadores = {};
+
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwuZW4epiGmW82rrVmAkDHLdqJ-1NzQq11DVdsk-JypimBliP5he6rrSZf5qW4fYIru0g/exec";
 
     function showToast(message) {
         const toast = document.getElementById('toast');
         toast.textContent = message;
-        toast.style.display = 'block';
+        toast.style.cssText = `
+            display: block; position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+            background: #1e2937; color: white; padding: 14px 24px; border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2); z-index: 10000;
+        `;
         setTimeout(() => toast.style.display = 'none', 3000);
     }
 
@@ -173,18 +258,21 @@
         return `${inicial}-${String(contadores[inicial]).padStart(3, '0')}`;
     }
 
+    function getFechaActual() {
+        const now = new Date();
+        return now.toLocaleDateString('es-AR') + " " + now.toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' });
+    }
+
     function siguientePantalla() {
         const dni = document.getElementById('dni').value.trim();
         const celular = document.getElementById('celular').value.trim();
-        
+       
         if (!dni || dni.length < 7) return showToast("❌ Ingresa un DNI válido");
         if (!celular || celular.length < 8) return showToast("❌ Ingresa un celular válido");
 
         datosUsuario = { dni, celular };
         document.getElementById('screen1').classList.remove('active');
-        setTimeout(() => {
-            document.getElementById('screen2').classList.add('active');
-        }, 100);
+        setTimeout(() => document.getElementById('screen2').classList.add('active'), 100);
     }
 
     async function registrarTurno() {
@@ -193,9 +281,10 @@
         btn.innerText = "Guardando...";
 
         const numeroTurno = generarNumeroTurno(datosUsuario.motivo);
+
         const data = {
             Numero_Turno: numeroTurno,
-            Fecha: new Date().toLocaleString('es-AR'),
+            Fecha: getFechaActual(),
             DNI: datosUsuario.dni,
             Celular: datosUsuario.celular,
             Motivo: datosUsuario.motivo
@@ -208,20 +297,75 @@
                 headers: { "Content-Type": "text/plain;charset=utf-8" },
                 body: JSON.stringify(data)
             });
+
             const resultado = await response.json();
+
             if (resultado.success) {
                 document.getElementById('numeroTurno').textContent = numeroTurno;
                 document.getElementById('screen2').classList.remove('active');
                 document.getElementById('screenSuccess').classList.add('active');
+                launchConfetti();
             } else {
                 showToast("Error al registrar el turno");
             }
         } catch (error) {
-            showToast("❌ No se pudo conectar");
+            showToast("❌ No se pudo conectar con el servidor");
         } finally {
             btn.disabled = false;
             btn.innerText = "Obtener Turno";
         }
+    }
+
+    // Confeti (mismo código de antes)
+    function launchConfetti() {
+        const canvas = document.getElementById('confetti');
+        canvas.style.display = 'block';
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const confetti = [];
+        const colors = ['#003087', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6'];
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height - canvas.height;
+                this.size = Math.random() * 12 + 8;
+                this.speed = Math.random() * 6 + 4;
+                this.angle = Math.random() * 360;
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+                this.rotationSpeed = Math.random() * 0.2 - 0.1;
+            }
+            update() {
+                this.y += this.speed;
+                this.angle += this.rotationSpeed;
+            }
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.angle);
+                ctx.fillStyle = this.color;
+                ctx.fillRect(-this.size/2, -this.size/2, this.size, this.size);
+                ctx.restore();
+            }
+        }
+
+        for (let i = 0; i < 180; i++) confetti.push(new Particle());
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            let stillAlive = false;
+            for (let i = 0; i < confetti.length; i++) {
+                confetti[i].update();
+                confetti[i].draw();
+                if (confetti[i].y < canvas.height) stillAlive = true;
+            }
+            if (stillAlive) requestAnimationFrame(animate);
+            else canvas.style.display = 'none';
+        }
+        animate();
+        setTimeout(() => canvas.style.display = 'none', 6000);
     }
 
     function mostrarLoginAdmin() {
