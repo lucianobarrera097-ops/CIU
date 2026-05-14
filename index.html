@@ -15,27 +15,33 @@
      
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
             min-height: 100vh;
             padding: 20px;
+            position: relative;
+            overflow-x: hidden;
         }
+
+        /* Nueva Imagen de Fondo */
         #background {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.65)),
-                        url('https://ibb.co/35n4sCyh') center/cover no-repeat;
+            background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.45)),
+                        url('https://i.ibb.co/B9bmkkw/UNSTA.jpg') center/cover no-repeat;
+            background-position: center 40%;
             z-index: -1;
+            image-rendering: crisp-edges;
+            image-rendering: -webkit-optimize-contrast;
         }
-     
+
         .container {
             max-width: 560px;
             margin: 0 auto;
-            background: white;
+            background: rgba(255, 255, 255, 0.975);
             border-radius: 24px;
-            box-shadow: 0 20px 60px rgba(0, 48, 135, 0.15);
+            box-shadow: 0 20px 60px rgba(0, 48, 135, 0.25);
             overflow: hidden;
         }
      
@@ -168,7 +174,6 @@
 
         @keyframes pop {
             0% { transform: scale(0.2) rotate(-15deg); }
-            60% { transform: scale(1.15) rotate(10deg); }
             100% { transform: scale(1) rotate(0); }
         }
         @keyframes fadeInScale {
@@ -178,10 +183,13 @@
     </style>
 </head>
 <body>
+
+    <div id="background"></div>
+
 <div class="container">
     <header>
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJa7s1baFLXkFvc_SvC2hRqMhy4wA4k4ciiQ&s"
-             alt="Logo UNSTA"
+             alt="Logo UNSTA" 
              class="logo"
              onerror="this.src='https://via.placeholder.com/145x80/003087/ffffff?text=UNSTA'">
         <h1 style="font-size: 2.3rem; margin-bottom: 8px;">CIU</h1>
@@ -192,22 +200,8 @@
     <!-- PANTALLA 1 -->
     <div id="screen1" class="screen active">
         <h2>Ingrese sus datos</h2>
-        <input type="tel" 
-               id="dni" 
-               placeholder="DNI *" 
-               maxlength="8"
-               inputmode="numeric"
-               pattern="[0-9]*"
-               autocomplete="off">
-
-        <input type="tel" 
-               id="celular" 
-               placeholder="Celular *" 
-               maxlength="15"
-               inputmode="numeric"
-               pattern="[0-9]*"
-               autocomplete="off">
-
+        <input type="tel" id="dni" placeholder="DNI *" maxlength="8" inputmode="numeric" pattern="[0-9]*" autocomplete="off">
+        <input type="tel" id="celular" placeholder="Celular *" maxlength="15" inputmode="numeric" pattern="[0-9]*" autocomplete="off">
         <button type="button" onclick="siguientePantalla()" class="btn-primary">Continuar →</button>
     </div>
 
@@ -283,7 +277,6 @@
     function siguientePantalla() {
         const dni = document.getElementById('dni').value.trim();
         const celular = document.getElementById('celular').value.trim();
-      
         if (!dni || dni.length < 7) return showToast("❌ Ingresa un DNI válido");
         if (!celular || celular.length < 8) return showToast("❌ Ingresa un celular válido");
 
