@@ -10,16 +10,16 @@
             --primary: #003087;
             --success: #10b981;
         }
-      
+     
         * { margin: 0; padding: 0; box-sizing: border-box; }
-      
+     
         body {
             font-family: 'Inter', sans-serif;
             background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
             min-height: 100vh;
             padding: 20px;
         }
-      
+     
         .container {
             max-width: 560px;
             margin: 0 auto;
@@ -28,7 +28,7 @@
             box-shadow: 0 20px 60px rgba(0, 48, 135, 0.15);
             overflow: hidden;
         }
-      
+     
         header {
             background: linear-gradient(135deg, var(--primary), #0052cc);
             color: white;
@@ -36,13 +36,13 @@
             text-align: center;
             position: relative;
         }
-      
+     
         .logo {
             width: 145px;
             height: auto;
             margin-bottom: 12px;
         }
-      
+     
         .admin-btn {
             position: absolute;
             top: 20px;
@@ -72,20 +72,20 @@
             transform: translateY(0);
         }
 
-        h2 { 
-            text-align: center; 
-            margin-bottom: 25px; 
-            color: #1e2937; 
-            font-weight: 600; 
-            font-size: 1.55rem; 
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #1e2937;
+            font-weight: 600;
+            font-size: 1.55rem;
         }
 
-        input { 
-            width: 100%; 
-            padding: 16px; 
-            margin: 10px 0; 
-            border: 2px solid #e2e8f0; 
-            border-radius: 14px; 
+        input {
+            width: 100%;
+            padding: 16px;
+            margin: 10px 0;
+            border: 2px solid #e2e8f0;
+            border-radius: 14px;
             font-size: 1.1rem;
             transition: all 0.3s;
         }
@@ -95,32 +95,32 @@
             box-shadow: 0 0 0 4px rgba(0, 48, 135, 0.1);
         }
 
-        .btn-primary { 
-            background: var(--primary); 
-            color: white; 
-            padding: 16px; 
-            border-radius: 14px; 
-            font-size: 1.1rem; 
-            width: 100%; 
-            margin-top: 15px; 
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            padding: 16px;
+            border-radius: 14px;
+            font-size: 1.1rem;
+            width: 100%;
+            margin-top: 15px;
             font-weight: 600;
             transition: all 0.3s;
         }
         .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,48,135,0.3); }
 
-        .btn-secondary { 
-            background: #6b7280; 
-            color: white; 
-            padding: 16px; 
-            border-radius: 14px; 
-            width: 100%; 
-            margin-top: 10px; 
+        .btn-secondary {
+            background: #6b7280;
+            color: white;
+            padding: 16px;
+            border-radius: 14px;
+            width: 100%;
+            margin-top: 10px;
         }
 
-        .motivos { 
-            display: grid; 
-            gap: 14px; 
-            margin: 25px 0; 
+        .motivos {
+            display: grid;
+            gap: 14px;
+            margin: 25px 0;
         }
         .motivo-btn {
             padding: 24px;
@@ -138,19 +138,16 @@
             transform: translateY(-4px);
         }
 
-        /* ====================== SUCCESS SCREEN ====================== */
         #screenSuccess {
             text-align: center;
             padding: 50px 30px;
         }
-
         .success-icon {
             font-size: 6.5rem;
             margin: 0 auto 20px;
             display: block;
             animation: pop 0.7s ease;
         }
-
         #numeroTurno {
             font-size: 3.6rem;
             font-weight: 700;
@@ -164,7 +161,6 @@
             60% { transform: scale(1.15) rotate(10deg); }
             100% { transform: scale(1) rotate(0); }
         }
-
         @keyframes fadeInScale {
             from { opacity: 0; transform: scale(0.6); }
             to { opacity: 1; transform: scale(1); }
@@ -174,10 +170,10 @@
 <body>
 <div class="container">
     <header>
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJa7s1baFLXkFvc_SvC2hRqMhy4wA4k4ciiQ&s" 
-     alt="Logo UNSTA" 
-     class="logo"
-     onerror="this.src='https://via.placeholder.com/145x80/003087/ffffff?text=UNSTA'">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJa7s1baFLXkFvc_SvC2hRqMhy4wA4k4ciiQ&s"
+             alt="Logo UNSTA"
+             class="logo"
+             onerror="this.src='https://via.placeholder.com/145x80/003087/ffffff?text=UNSTA'">
         <h1 style="font-size: 2.3rem; margin-bottom: 8px;">CIU</h1>
         <p style="opacity: 0.95;">Universidad del Norte Santo Tomás de Aquino</p>
         <button class="admin-btn" onclick="mostrarLoginAdmin()" title="Administrador">⚙️</button>
@@ -186,8 +182,22 @@
     <!-- PANTALLA 1 -->
     <div id="screen1" class="screen active">
         <h2>Ingrese sus datos</h2>
-        <input type="text" id="dni" placeholder="DNI *" maxlength="8">
-        <input type="tel" id="celular" placeholder="Celular *" maxlength="15">
+        <input type="tel" 
+               id="dni" 
+               placeholder="DNI *" 
+               maxlength="8"
+               inputmode="numeric"
+               pattern="[0-9]*"
+               autocomplete="off">
+
+        <input type="tel" 
+               id="celular" 
+               placeholder="Celular *" 
+               maxlength="15"
+               inputmode="numeric"
+               pattern="[0-9]*"
+               autocomplete="off">
+
         <button type="button" onclick="siguientePantalla()" class="btn-primary">Continuar →</button>
     </div>
 
@@ -213,12 +223,9 @@
 <div id="toast"></div>
 
 <script>
-    // ... (El resto del script se mantiene igual que en la versión anterior)
-
     let datosUsuario = {};
     const motivosLista = ["Inscripciones", "Cursos", "Alumnos", "Becas", "Otros trámites"];
     let contadores = {};
-
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwuZW4epiGmW82rrVmAkDHLdqJ-1NzQq11DVdsk-JypimBliP5he6rrSZf5qW4fYIru0g/exec";
 
     function showToast(message) {
@@ -266,7 +273,7 @@
     function siguientePantalla() {
         const dni = document.getElementById('dni').value.trim();
         const celular = document.getElementById('celular').value.trim();
-       
+      
         if (!dni || dni.length < 7) return showToast("❌ Ingresa un DNI válido");
         if (!celular || celular.length < 8) return showToast("❌ Ingresa un celular válido");
 
@@ -281,7 +288,6 @@
         btn.innerText = "Guardando...";
 
         const numeroTurno = generarNumeroTurno(datosUsuario.motivo);
-
         const data = {
             Numero_Turno: numeroTurno,
             Fecha: getFechaActual(),
@@ -297,7 +303,6 @@
                 headers: { "Content-Type": "text/plain;charset=utf-8" },
                 body: JSON.stringify(data)
             });
-
             const resultado = await response.json();
 
             if (resultado.success) {
@@ -316,17 +321,15 @@
         }
     }
 
-    // Confeti (mismo código de antes)
     function launchConfetti() {
         const canvas = document.getElementById('confetti');
         canvas.style.display = 'block';
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-
         const confetti = [];
         const colors = ['#003087', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6'];
-
+        
         class Particle {
             constructor() {
                 this.x = Math.random() * canvas.width;
@@ -337,10 +340,7 @@
                 this.color = colors[Math.floor(Math.random() * colors.length)];
                 this.rotationSpeed = Math.random() * 0.2 - 0.1;
             }
-            update() {
-                this.y += this.speed;
-                this.angle += this.rotationSpeed;
-            }
+            update() { this.y += this.speed; this.angle += this.rotationSpeed; }
             draw() {
                 ctx.save();
                 ctx.translate(this.x, this.y);
@@ -350,7 +350,6 @@
                 ctx.restore();
             }
         }
-
         for (let i = 0; i < 180; i++) confetti.push(new Particle());
 
         function animate() {
